@@ -31,29 +31,27 @@ public class UniversalSkinFactory extends SkinFactory {
 
             this.checkoptfile();
         
-        //ISSUE: file existing is overriding Config options
-
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
-            //dismounts a player on refreshing, which prevents desync caused by riding a horse, or plugins that allow sitting
             Entity vehicle = player.getVehicle();
 
+            //dismounts a player on refreshing, which prevents desync caused by riding a horse, or plugins that allow sitting
             if ((Config.DISMOUNT_PLAYER_ON_UPDATE || !disableDismountPlayer) && vehicle != null) {
 
             	vehicle.removePassenger(player);
-            	
+
             	if (Config.REMOUNT_PLAYER_ON_UPDATE || enableRemountPlayer) {
 
 	            	//this is delayed to next tick to allow the accepter to propagate if necessary (IE: Paper's health update)
 	                Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> {
 
-	                	//checks if this is vehicle has not despawned or died
-	                	//if (vehicle.isValid()) {
+	                	//this is not really necessary, as addPassenger on vanilla despawned vehicles won't do anything, but better to be safe in case the server has plugins that do strange things
+	                	if (vehicle.isValid()) {
 	                	
 	                		vehicle.addPassenger(player);
 	                		
-	                	//}
-	                	
+	                	}
+
 	                }, 1);
 	                
             	}
