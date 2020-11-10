@@ -114,9 +114,9 @@ public class UniversalSkinFactory extends SkinFactory {
 
     private void checkoptfile() {
 
-        File fileDisableDismountPlayer = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "disablesdismountplayer");
-        File fileEnableDismountEntities = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "enablesdismountentities");
-        File fileEnableRemountEntiteis = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "enablesremountentities");
+        File fileDisableDismountPlayer = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "disabledismountplayer");
+        File fileEnableDismountEntities = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "enabledismountentities");
+        File fileEnableRemountPlayer = new File("plugins" + File.separator + "SkinsRestorer" + File.separator + "enableremountplayers");
 
         if (fileDisableDismountPlayer.exists())
             disableDismountPlayer = true;
@@ -124,7 +124,7 @@ public class UniversalSkinFactory extends SkinFactory {
         if (fileEnableDismountEntities.exists())
             enableDismountEntities = true;
         
-        if (fileEnableRemountEntiteis.exists())
+        if (fileEnableRemountPlayer.exists())
             enableRemountPlayer = true;
 
         checkOptFileChecked = true;
